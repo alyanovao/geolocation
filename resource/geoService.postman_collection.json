@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "0765da5b-258a-412c-bb72-c2684f132ab6",
+		"name": "geoService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "geoProxyService",
+			"item": [
+				{
+					"name": "sendTestLocation",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"user-agent": true,
+							"content-length": true,
+							"host": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "default"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Dalvik/2.1.0 (Linux; U; Android 10; YAL-L21 Build/HUAWEIYAL-L21)",
+								"type": "default"
+							},
+							{
+								"key": "Host",
+								"value": "77.66.180.3:5055",
+								"type": "default"
+							},
+							{
+								"key": "Connection",
+								"value": "Keep-Alive",
+								"type": "default"
+							},
+							{
+								"key": "Accept-Encoding",
+								"value": "gzip",
+								"type": "default"
+							},
+							{
+								"key": "Content-Length",
+								"value": "0",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8100/?id=537453&timestamp=1682797424&lat=57.372035&lon=59.931706&speed=0.1512450356168747&bearing=0.0&altitude=48.400001525878906&accuracy=15.184000015258789&batt=76.0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8100",
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "537453"
+								},
+								{
+									"key": "timestamp",
+									"value": "1682797424"
+								},
+								{
+									"key": "lat",
+									"value": "57.372035"
+								},
+								{
+									"key": "lon",
+									"value": "59.931706"
+								},
+								{
+									"key": "speed",
+									"value": "0.1512450356168747"
+								},
+								{
+									"key": "bearing",
+									"value": "0.0"
+								},
+								{
+									"key": "altitude",
+									"value": "48.400001525878906"
+								},
+								{
+									"key": "accuracy",
+									"value": "15.184000015258789"
+								},
+								{
+									"key": "batt",
+									"value": "76.0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getLocations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8100/getLocations/537453",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8100",
+							"path": [
+								"getLocations",
+								"537453"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "eventService",
+			"item": [
+				{
+					"name": "setTestLocation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"clientId\": 537453,\r\n\t\"timestamp\": 1681416227,\r\n\t\"latitude\": 57.372035,\r\n\t\"longitude\": 59.931706,\r\n\t\"speed\": 0.1512450356168747,\r\n\t\"bearing\": 0.0,\r\n\t\"altitude\": 48.400001525878906,\r\n\t\"accuracy\": 15.184000015258789,\r\n\t\"batteryLevel\":76.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8101/setLocation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8101",
+							"path": [
+								"setLocation"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "consumerService",
+			"item": [
+				{
+					"name": "getLocations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8100/getLocations/537453",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8100",
+							"path": [
+								"getLocations",
+								"537453"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
