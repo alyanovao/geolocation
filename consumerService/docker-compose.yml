@@ -1,0 +1,15 @@
+version: '3'
+services:
+  postgress:
+    image: "postgres:13"
+    container_name: "postgres"
+    ports:
+      - "5430:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=user
+      - POSTGRES_DB=customDB
+    networks:
+      - network
+networks:
+  network:

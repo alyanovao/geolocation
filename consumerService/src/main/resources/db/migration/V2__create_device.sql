@@ -1,0 +1,1 @@
+insert into device(id, name) values (537453, 'Артем');
