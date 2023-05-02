@@ -3,8 +3,10 @@ package ru.aao.geoproxyservice.routes;
 import lombok.val;
 import org.apache.camel.Predicate;
 import org.apache.camel.builder.RouteBuilder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.aao.geoproxyservice.commons.Constant;
+import ru.aao.geoproxyservice.processors.MaskLocationProcessor;
 import ru.aao.geoproxyservice.processors.fault.RestFaultResponseBuilder;
 import ru.aao.geoproxyservice.processors.log.LogIdGenerator;
 import ru.aao.geoproxyservice.types.log.Direction;
@@ -12,7 +14,14 @@ import ru.aao.geoproxyservice.types.log.Direction;
 @Service
 public class GeoProxyServiceFacade extends RouteBuilder {
 
+    @Value("${latitude}")
+    private String latitude;
+
+    @Value("${longitude}")
+    private String longitude;
+
     public final Predicate logging = simple("{{logging.enable}}").isEqualToIgnoreCase("true");
+    public final Predicate presentationMode = simple("{{presentation}}").isEqualToIgnoreCase(constant("true"));
 
     @Override
     public void configure() {
@@ -36,6 +45,9 @@ public class GeoProxyServiceFacade extends RouteBuilder {
             .routeId(Constant.FACADE_ROUTE_ID)
 
             .process(new LogIdGenerator())
+            .filter(presentationMode)
+                .process(new MaskLocationProcessor(latitude, longitude))
+            .end()
             .filter(logging)
                 .setProperty(Constant.LOG_LEVEL, constant("INFO"))
                 .setProperty(Constant.LOG_COMPONENT, constant("Facade"))
