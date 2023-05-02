@@ -30,7 +30,7 @@ public class GeoProxyServiceFacade extends RouteBuilder {
 
         from("netty-http:http://{{geo.proxy.host}}:{{geo.proxy.port}}" +
                 "?matchOnUriPrefix=true" +
-                "&sendServerVersion=false" +
+                //https://issues.apache.org/jira/browse/CAMEL-8031 -- должно быть 2 x cpu_core, но не работает
                 "&maximumPoolSize={{maximum-pool-size}}" +
                 "&usingExecutorService=false")
             .routeId(Constant.FACADE_ROUTE_ID)
